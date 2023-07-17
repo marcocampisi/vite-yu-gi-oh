@@ -1,1 +1,1 @@
-# vite-vue-template
+# vite-yu-gi-oh
