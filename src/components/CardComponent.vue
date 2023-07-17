@@ -11,17 +11,27 @@ export default {
 </script>
 
 <template>
-    <div class="singleCard text-center">
+    <div class="singleCard text-center mb-5">
         <div>
-            <img :src="store.card_images.image_url" :alt="store.name">
+            <img class="w-100" :src="store.card_images[0].image_url" :alt="store.name">
         </div>
-        <div>
-            <h2>{{ store.name }}</h2>
-        </div>
-        <div>
-            <h3>{{ store.archetype }}</h3>
+        <div class="titleContainer py-3">
+            <h2 class="text-white fw-bold text-uppercase fs-4">{{ store.name }}</h2>
+            <h3 class="text-black fw-light fs-5">{{ store.archetype }}</h3>
         </div>
     </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@use '../assets/scss/partials/variables.scss' as *;
+
+.singleCard {
+    img {
+        cursor: pointer;
+    }
+}
+.titleContainer {
+    background-color: $body-color;
+    height: 150px;
+}
+</style>
