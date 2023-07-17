@@ -4,28 +4,29 @@ import MainComponent from "./components/MainComponent.vue";
 import axios from "axios";
 import { store } from "./store.js"
 
-    export default {
-        data() {
-            return {
+export default {
+    data() {
+        return {
 
-            }
-        },
-        components: {
-            HeaderComponent,
-            MainComponent
-        },
-        methods: {},
-        created() {
-            axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0')
-                .then(response => {
-                    console.log(response.data.results);
-                });
         }
+    },
+    components: {
+        HeaderComponent,
+        MainComponent
+    },
+    methods: {},
+    created() {
+        axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0')
+            .then(response => {
+                console.log(response.data.results);
+            });
     }
+}
 </script>
 
 <template>
-  
+    <HeaderComponent />
+    <MainComponent />
 </template>
 
 <style lang="scss">
