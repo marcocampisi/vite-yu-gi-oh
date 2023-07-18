@@ -1,7 +1,6 @@
 <script>
 import CardComponent from './CardComponent.vue';
 import { store } from '../store.js';
-import axios from "axios";
 
 export default {
     name: 'MainComponent',
@@ -12,21 +11,6 @@ export default {
     },
     components: {
         CardComponent
-    },
-    methods: {
-        getCards() {
-            axios
-                .get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0')
-                .then(response => {
-                    const cards = response.data.data;
-                    this.store.cards = cards;
-                })
-                .catch(error => {
-                    console.error(error);
-                });
-        }
-    }, mounted() {
-        this.getCards();
     }
 }
 </script>
