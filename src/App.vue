@@ -7,7 +7,8 @@ import axios from "axios";
 export default {
     data() {
         return {
-            store
+            store,
+            filteredCards: store.cards
         }
     },
     components: {
@@ -17,23 +18,33 @@ export default {
     methods: {
         getCards() {
             axios
-                .get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0')
+                .get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=50&offset=0', {
+                    params: {
+                        // name: this.store.searchText,
+                        archetype: this.store.archetypeOptions
+                    }
+                })
                 .then(response => {
                     const cards = response.data.data;
-                    this.store.cards = cards;
+                    store.cards = cards;
                 })
                 .catch(error => {
                     console.error(error);
                 });
+        },
+        performSearch() {
+            console.log('Intercettata search');
+            this.getCards();
         }
     }, created() {
         this.getCards();
-    }
+    },
+
 }
 </script>
 
 <template>
-    <HeaderComponent />
+    <HeaderComponent @search="performSearch()" />
     <MainComponent />
 </template>
 

@@ -1,8 +1,11 @@
 <script>
+import { store } from '../store.js';
+
 export default {
+    name: "HeaderComponent",
     data() {
         return {
-
+            store
         }
     }
 }
@@ -19,8 +22,9 @@ export default {
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Ricerca..." aria-label="Search">
+                    <form class="d-flex" role="search" @submit.prevent="$emit('search')">
+                        <input class="form-control me-2" type="text" placeholder="Ricerca..." aria-label="Search"
+                            v-model="store.searchText">
                         <button class="btn btn-outline-success" type="submit">Vai</button>
                     </form>
                 </div>
@@ -29,4 +33,8 @@ export default {
     </div>
 </template>
 
-<style scoped></style>
+<style lang="scss" scoped>
+input {
+    color: black;
+}
+</style>

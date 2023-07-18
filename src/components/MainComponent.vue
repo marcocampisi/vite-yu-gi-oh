@@ -7,8 +7,7 @@ export default {
     data() {
         return {
             store,
-            archetype: "",
-            archetypeOptions: []
+            archetype: ""
         }
     },
     components: {
@@ -17,29 +16,21 @@ export default {
     computed: {
         filteredCards() {
             if (this.archetype === "") {
-                return this.store.cards;
+                return this.store.cards.filter(card => {
+                    const searchText = this.store.searchText && typeof this.store.searchText === 'string' ? this.store.searchText.toLowerCase() : '';
+                    return card.name.toLowerCase().includes(searchText);
+                });
             } else {
-                return this.store.cards.filter(card => card.archetype === this.archetype);
+                return this.store.cards.filter(card => {
+                    const searchText = this.store.searchText && typeof this.store.searchText === 'string' ? this.store.searchText.toLowerCase() : '';
+                    return card.archetype === this.archetype && card.name.toLowerCase().includes(searchText);
+                });
             }
         },
-    },
-    methods: {
-        getArchetypeOptions() {
-            const archetypes = new Set();
-            for (const card of this.store.cards) {
-                archetypes.add(card.archetype);
-            }
-            this.archetypeOptions = Array.from(archetypes);
-        },
-    },
-    created() {
-        const archetypes = new Set();
-        for (const card of this.store.cards) {
-            if (card.archetype) {
-                archetypes.add(card.archetype);
-            }
+        getUniqueArchetypes() {
+            const archetypes = new Set(this.store.cards.map(card => card.archetype));
+            return Array.from(archetypes);
         }
-        this.archetypeOptions = Array.from(archetypes);
     }
 }
 </script>
@@ -50,7 +41,7 @@ export default {
             <div class="col-sm-2 my-5">
                 <select class="form-select" aria-label="Filter" v-model="archetype">
                     <option value="">Seleziona un archetipo</option>
-                    <option v-for="archetypeOption in archetypeOptions" :key="archetypeOption" :value="archetypeOption">
+                    <option v-for="archetypeOption in getUniqueArchetypes" :key="archetypeOption" :value="archetypeOption">
                         {{ archetypeOption }}
                     </option>
                 </select>
@@ -66,4 +57,9 @@ export default {
     </div>
 </template>
 
-<style scoped></style>
+<style lang="scss" scoped>
+select {
+    cursor: pointer;
+    color: black;
+}
+</style>
