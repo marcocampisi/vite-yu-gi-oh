@@ -38,7 +38,7 @@ export default {
 <template>
     <div class="container-fluid">
         <div class="container">
-            <div class="col-sm-2 my-5">
+            <div class="col-sm-6 col-md-3 my-5">
                 <select class="form-select" aria-label="Filter" v-model="archetype">
                     <option value="">Seleziona un archetipo</option>
                     <option v-for="archetypeOption in getUniqueArchetypes" :key="archetypeOption" :value="archetypeOption">
@@ -47,9 +47,9 @@ export default {
                 </select>
             </div>
         </div>
-        <div class="container bg-white d-flex">
-            <div class="row w-100 justify-content-between p-5">
-                <div class="col-md-3" v-for="(card, i) in filteredCards" :key="card.id">
+        <div class="container bg-white d-flex rounded-4">
+            <div class="row w-100 p-5">
+                <div class=" col-12 col-sm-6 col-md-3" v-for="(card, i) in filteredCards" :key="card.id">
                     <CardComponent :store="card" />
                 </div>
             </div>
@@ -60,6 +60,5 @@ export default {
 <style lang="scss" scoped>
 select {
     cursor: pointer;
-    color: black;
 }
 </style>

@@ -33,8 +33,4 @@ export default {
     </div>
 </template>
 
-<style lang="scss" scoped>
-input {
-    color: black;
-}
-</style>
+<style lang="scss" scoped></style>

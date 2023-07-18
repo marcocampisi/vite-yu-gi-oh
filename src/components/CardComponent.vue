@@ -13,10 +13,10 @@ export default {
 <template>
     <div class="singleCard text-center mb-5">
         <div>
-            <img class="w-100" :src="store.card_images[0].image_url" :alt="store.name">
+            <img class="w-100 rounded" :src="store.card_images[0].image_url" :alt="store.name">
         </div>
-        <div class="titleContainer py-3">
-            <h2 class="text-white fw-bold text-uppercase fs-4">{{ store.name }}</h2>
+        <div class="titleContainer py-3 mt-2 rounded">
+            <h2 class="text-white fw-bold text-uppercase fs-4 text-break">{{ store.name }}</h2>
             <h3 class="text-black fw-light fs-5">{{ store.archetype }}</h3>
         </div>
     </div>
@@ -30,8 +30,13 @@ export default {
         cursor: pointer;
     }
 }
+
 .titleContainer {
-    background-color: $body-color;
-    height: 150px;
+    background-color: $bg-body-color;
+    min-height: 150px;
+
+    h2 {
+        text-shadow: 2px 2px 2px gray;
+    }
 }
 </style>

@@ -18,7 +18,7 @@ export default {
     methods: {
         getCards() {
             axios
-                .get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=50&offset=0', {
+                .get('https://db.ygoprodeck.com/api/v7/cardinfo.php', {
                     params: {
                         // name: this.store.searchText,
                         archetype: this.store.archetypeOptions
@@ -33,7 +33,6 @@ export default {
                 });
         },
         performSearch() {
-            console.log('Intercettata search');
             this.getCards();
         }
     }, created() {
@@ -52,6 +51,6 @@ export default {
 @import "assets/scss/main.scss";
 
 body {
-    background-color: $body-color;
+    background-color: $bg-body-color;
 }
 </style>
